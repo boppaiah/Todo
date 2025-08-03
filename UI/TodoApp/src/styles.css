@@ -1,0 +1,93 @@
+/* You can add global styles to this file, and also import other style files */
+
+.container {
+      max-width: 1200px;
+      margin: 0 auto;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+.custom-toolbar {
+  padding: 0 16px;
+  height: 64px; /* standard height */
+  display: flex;
+  align-items: center;
+}
+
+.menu-button {
+  margin-right: 16px;
+}
+
+.app-title {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.nav-links{
+    display: flex;
+    gap: 12px;
+}
+
+.nav-links a {
+  font-size: 16px;
+}
+
+
+.mat-paginator {
+  margin-top: 20px;
+}
+
+
+.full-width {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+form label {
+    text-transform: uppercase;
+    color:grey;
+}
+
+form input {
+    font-weight: 500;
+}
+
+form input::placeholder{
+    color:#c0bdbd;
+    font-weight: 300;
+}
+
+form.submitted input.ng-invalid {
+    border-color:red;
+}
+
+.button-group{
+  display:flex;
+  gap: 12px;
+  margin-top:16px;
+}
+
+.action-button {
+  min-width: 100px;
+}
+
+.custom-toastr {
+  width: 400px !important;
+  padding:16px !important;
+  font-size: 16px !important;
+  word-wrap: break-word;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
