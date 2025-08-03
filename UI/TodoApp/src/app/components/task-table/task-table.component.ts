@@ -16,6 +16,7 @@ import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.
 import { TodoService } from '../../services/todo.service';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatBadgeModule } from '@angular/material/badge'
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-task-table',
@@ -40,7 +41,8 @@ export class TaskTableComponent implements AfterViewInit, OnChanges {
   constructor(
     private router:Router,
     private dialog: MatDialog,
-    private service: TodoService
+    private service: TodoService,
+    private toastr:ToastrService,
   ){}
 
 @Input() todoItems: Todo[] = [];
@@ -88,6 +90,7 @@ displayedColumns: string[] = ['select', 'name', 'startDate', 'endDate', 'priorit
         this.totalUsers = data.total;
       },
       error: (err) => {
+        this.toastr.error(`Unable to get todo Items ${err.error.detail}`, 'Todo Detail register');
       }
       });
   }
@@ -103,15 +106,10 @@ displayedColumns: string[] = ['select', 'name', 'startDate', 'endDate', 'priorit
       if (result) {
         this.service.deleteTodoItem(id).subscribe({
           next: resp =>{
-            //if(resp){
-              //this.todoItems = this.todoItems.filter(task => task.id !== id);
-            //}
-
-            //refresh the list 
             this.loadTodoItems();
           },
           error: err =>{
-            console.log(err);
+            this.toastr.error(`Unable to get delete todo Item ${id} ${err.error.detail}`, 'Todo Detail register');
           }
         });
       }
