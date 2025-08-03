@@ -1,0 +1,23 @@
+ <mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer mode="side" class="app-sidenav" [opened]="false">
+    <mat-nav-list>
+      <mat-list-item routerLink="/todos" (click)="drawer.close()"  routerLinkActive="active-link">Todo List</mat-list-item>
+      <mat-list-item routerLink="/add" (click)="drawer.close()">Add Todo Item</mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <!-- Top toolbar -->
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>To-Do App</span>
+    </mat-toolbar>
+
+    <!-- Main content -->
+    <div class="main-content p-3">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container> 
