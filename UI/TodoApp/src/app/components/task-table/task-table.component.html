@@ -10,20 +10,21 @@
 <mat-table [dataSource]="dataSource" matSort  class="mat-elevation-z2 center-table mt-3" style="width: 100%">
 
   <!-- Checkbox Column -->
-  <ng-container matColumnDef="select">
+  <!-- <ng-container matColumnDef="select">
     <mat-header-cell *matHeaderCellDef></mat-header-cell>
     <mat-cell *matCellDef="let task">
       <mat-checkbox [(ngModel)]="task.isSelected" (change)="toggleRowSelection(task)">
       </mat-checkbox>
     </mat-cell>
-  </ng-container>
+  </ng-container> -->
 
 
   <!-- Name Column -->
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
     <mat-cell *matCellDef="let task"> {{task.name}}       
-      <span *ngIf="task.isSelected" matBadge="Complete" matBadgeColor="accent"></span></mat-cell>
+      <!-- <span *ngIf="task.isSelected" matBadge="Complete" matBadgeColor="accent"></span>-->
+    </mat-cell> 
   </ng-container>
 
   <!-- Start Date Column -->

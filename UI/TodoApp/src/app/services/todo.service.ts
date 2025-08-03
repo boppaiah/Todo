@@ -23,7 +23,7 @@ export class TodoService {
     const params = new HttpParams()
       .set('pageNumber', pageIndex.toString())
       .set('pageSize', pageSize.toString());
-    return this.http.get<{ todoItems: Todo[]; total: number }>(this.url, {params})
+    return this.http.get<{ todoItems: Todo[]; total: number }>(this.url+"/items", {params})
 
   }
 

@@ -55,7 +55,7 @@ export class TaskTableComponent implements AfterViewInit, OnChanges {
 Priority = Priority;
 dataSource = new MatTableDataSource<Todo>();
 
-displayedColumns: string[] = ['select', 'name', 'startDate', 'endDate', 'priority', 'actions'];
+displayedColumns: string[] = ['name', 'startDate', 'endDate', 'priority', 'actions'];
 
 
   ngOnChanges(changes: SimpleChanges) {
