@@ -7,12 +7,14 @@ import { routes } from './app.routes';
 import { provideRouter } from '@angular/router';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'
 
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideHttpClient(),
     provideAnimations(), // required animations providers
     provideToastr(), // Toastr providers
-    DatePipe, provideAnimationsAsync()
+    DatePipe, 
+    provideAnimationsAsync()
   ]
 };

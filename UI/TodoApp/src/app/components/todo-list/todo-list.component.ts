@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoService } from '../../services/todo.service';
-import { DatePipe } from '@angular/common';
 import { Todo } from '../../models/todo';
-import { TaskTableComponent } from '../task-table/task-table.component';
 import { ToastrService } from 'ngx-toastr';
-
+import { TodoTableComponent } from '../todo-table/todo-table.component';
 
 @Component({
   selector: 'app-todo-list',
   standalone: true,
-  imports: [TaskTableComponent ],
+  imports: [TodoTableComponent ],
   templateUrl: './todo-list.component.html',
   styleUrl: './todo-list.component.css'
 })
@@ -46,6 +44,5 @@ export class TodoListComponent implements OnInit  {
     console.log(task.isSelected);
     //send a patch request to update the list item by calling the service
   }
-
 
 }

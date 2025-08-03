@@ -1,13 +1,13 @@
 <mat-toolbar color="transparent" class="table-toolbar">
-  <span>To do List</span>
+  <span>To-do List</span>
   <span class="spacer"></span>
-  <button mat-raised-button color="accent" (click)="goToAdd()">
-    <mat-icon>add</mat-icon> Add Todo
+  <button mat-raised-button color="primary" (click)="goToAdd()">
+    <mat-icon>add</mat-icon> 
+    Add Task
   </button>
 </mat-toolbar>
 
-
-<mat-table [dataSource]="dataSource" matSort  class="mat-elevation-z2 center-table mt-3" style="width: 100%">
+<mat-table [dataSource]="dataSource" matSort  class="mat-elevation-z2 center-table mt-3" style="width: 60%">
 
   <!-- Checkbox Column -->
   <!-- <ng-container matColumnDef="select">

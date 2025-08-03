@@ -3,17 +3,11 @@ import { TodoService } from '../../services/todo.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatSelectModule } from '@angular/material/select';
-import { MatButtonModule } from '@angular/material/button';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatCard } from '@angular/material/card';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Priority } from '../../models/priority.enum';
+import { SHARED_MATERIAL_PROVIDERS } from '../shared/MaterialImports/shared.materials';
+
 
 @Component({
   selector: 'app-todo-form',
@@ -21,14 +15,7 @@ import { Priority } from '../../models/priority.enum';
   imports: [
     CommonModule,
     FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatSelectModule,
-    MatButtonModule,
-    MatCard,
-    MatProgressSpinnerModule
+    SHARED_MATERIAL_PROVIDERS
   ],
   templateUrl: './todo-form.component.html',
   styleUrl: './todo-form.component.css'
@@ -50,15 +37,19 @@ export class TodoFormComponent implements OnInit {
     this.loadTodoItem(id);
   }
 
-
   onSubmit(form:NgForm){
     this.loading = true;
     this.service.formSubmitted = true;
 
     if(form.valid){
-      if(this.service.formData.id !== "")
-      {
-        this.service.updateTodoItem()
+      this.service.formData.id !== "" ? this.updateTodoItem(form) : this.addTodoItem(form);
+    }else{
+      this.loading= false;
+    }
+  }
+
+  updateTodoItem(form:NgForm){
+      this.service.updateTodoItem()
         .subscribe({
              next:resp => {
               this.loading = false;
@@ -78,9 +69,10 @@ export class TodoFormComponent implements OnInit {
                }
              }
         })
-      }else{
-      // call the service and reset the form 
-      const { id, ...formValue} = this.service.formData;
+  }
+
+  addTodoItem(form:NgForm){
+    const { id, ...formValue} = this.service.formData;
       this.service.postTodoItem(formValue)
         .subscribe({
              next:resp => {
@@ -101,13 +93,9 @@ export class TodoFormComponent implements OnInit {
                }
              }
         })
+  }
 
-      }}else{
-        this.loading= false;
-      }
-    }
-
-    loadTodoItem(id:string){
+  loadTodoItem(id:string){
       const todoItem = this.service.todoItemList.find(t => t.id === id);
       if(todoItem){
         this.service.formData = {
@@ -115,15 +103,16 @@ export class TodoFormComponent implements OnInit {
           priority : todoItem.priority as Priority
         };
       }
-    }
+  }
 
-    onCancel(form:NgForm){
+  onClear(form:NgForm){
       this.service.resetForm(form);
-    }
+  }
 
-    goBack(form:NgForm){
+  goBack(form:NgForm){
       this.service.resetForm(form);
       this.router.navigate(['/todos']);
-    }
+  }
+
 }
 

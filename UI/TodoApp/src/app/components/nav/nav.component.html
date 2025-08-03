@@ -1,8 +1,8 @@
  <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer mode="side" class="app-sidenav" [opened]="false">
-    <mat-nav-list>
-      <mat-list-item routerLink="/todos" (click)="drawer.close()"  routerLinkActive="active-link">TODO List</mat-list-item>
-      <mat-list-item routerLink="/add" (click)="drawer.close()">Add TODO Item</mat-list-item>
+    <mat-nav-list class="custom-nav">
+      <mat-list-item routerLink="/todos" (click)="drawer.close()"  routerLinkActive="active-link">Tasks</mat-list-item>
+      <mat-list-item routerLink="/add" (click)="drawer.close()">Add Task</mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
 

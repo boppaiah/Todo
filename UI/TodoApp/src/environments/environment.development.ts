@@ -1,5 +1,5 @@
 export const environment = {
 
-    apiBaseUrl:'http://localhost:5275/api/v1/todo'
+    apiBaseUrl:'https://localhost:7128/api/v1/todo'
 
 };

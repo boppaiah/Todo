@@ -1,4 +1,4 @@
-import { AfterViewInit, Component,Input, OnChanges, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -8,62 +8,56 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { Router } from '@angular/router';
-import { MatButtonModule } from '@angular/material/button';
 import { Priority } from '../../models/priority.enum'
-import { MatIcon } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
 import { TodoService } from '../../services/todo.service';
-import { MatToolbar } from '@angular/material/toolbar';
 import { MatBadgeModule } from '@angular/material/badge'
 import { ToastrService } from 'ngx-toastr';
+import { SHARED_MATERIAL_PROVIDERS } from '../shared/MaterialImports/shared.materials';
 
 @Component({
   selector: 'app-task-table',
   standalone: true,
-  imports: [CommonModule, 
-    MatTableModule, 
-    MatCheckboxModule, 
-    FormsModule, 
-    DatePipe, 
-    MatPaginator, 
+  imports: [CommonModule,
+    MatTableModule,
+    MatCheckboxModule,
+    FormsModule,
+    DatePipe,
+    MatPaginator,
     MatSortModule,
-    MatButtonModule, 
-    MatIcon,
-    MatToolbar,
-    MatBadgeModule
+    MatBadgeModule,
+    SHARED_MATERIAL_PROVIDERS
   ],
-  templateUrl: './task-table.component.html',
-  styleUrl: './task-table.component.css'
+  templateUrl: './todo-table.component.html',
+  styleUrl: './todo-table.component.css'
 })
-export class TaskTableComponent implements AfterViewInit, OnChanges {
+export class TodoTableComponent implements AfterViewInit, OnChanges {
 
   constructor(
-    private router:Router,
+    private router: Router,
     private dialog: MatDialog,
     private service: TodoService,
-    private toastr:ToastrService,
-  ){}
+    private toastr: ToastrService,
+  ) { }
 
-@Input() todoItems: Todo[] = [];
-@Input() totalUsers: number = 0;
-@Input() pageSize: number = 0;
+  @Input() todoItems: Todo[] = [];
+  @Input() totalUsers: number = 0;
+  @Input() pageSize: number = 0;
 
-@ViewChild(MatPaginator) paginator!: MatPaginator;
-@ViewChild(MatSort) sort!: MatSort;  
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
-Priority = Priority;
-dataSource = new MatTableDataSource<Todo>();
-
-displayedColumns: string[] = ['name', 'startDate', 'endDate', 'priority', 'actions'];
-
+  Priority = Priority;
+  dataSource = new MatTableDataSource<Todo>();
+  displayedColumns: string[] = ['name', 'startDate', 'endDate', 'priority', 'actions'];
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['todoItems'] && this.todoItems && this.todoItems.length) {
-     
-        this.dataSource = new MatTableDataSource(this.todoItems);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+
+      this.dataSource = new MatTableDataSource(this.todoItems);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
 
     }
   }
@@ -77,26 +71,24 @@ displayedColumns: string[] = ['name', 'startDate', 'endDate', 'priority', 'actio
     todo.isSelected = !todo.isSelected;
   }
 
-  editTask(id:string){
+  editTask(id: string) {
     this.router.navigate(['/edit', id])
   }
 
-
-  loadTodoItems(){
+  loadTodoItems() {
     this.service.getTodoItems(0, this.pageSize)
-    .subscribe({
-       next: (data) => {
-        this.service.todoItemList = [...data.todoItems];
-        this.totalUsers = data.total;
-      },
-      error: (err) => {
-        this.toastr.error(`Unable to get todo Items ${err.error.detail}`, 'Todo Detail register');
-      }
+      .subscribe({
+        next: (data) => {
+          this.service.todoItemList = [...data.todoItems];
+          this.totalUsers = data.total;
+        },
+        error: (err) => {
+          this.toastr.error(`Unable to get todo Items ${err.error.detail}`, 'Todo Detail register');
+        }
       });
   }
 
-
-  onDelete(id:string){
+  onDelete(id: string) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '300px',
       data: { message: 'Are you sure you want to delete this task?' }
@@ -105,10 +97,10 @@ displayedColumns: string[] = ['name', 'startDate', 'endDate', 'priority', 'actio
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.service.deleteTodoItem(id).subscribe({
-          next: resp =>{
+          next: resp => {
             this.loadTodoItems();
           },
-          error: err =>{
+          error: err => {
             this.toastr.error(`Unable to get delete todo Item ${id} ${err.error.detail}`, 'Todo Detail register');
           }
         });
@@ -116,7 +108,8 @@ displayedColumns: string[] = ['name', 'startDate', 'endDate', 'priority', 'actio
     });
   }
 
-  goToAdd(){
+  goToAdd() {
     this.router.navigate(['/add']);
   }
+
 }
