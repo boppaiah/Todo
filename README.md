@@ -143,7 +143,7 @@ Error Handling: Comprehensive error management
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/api/v1/todos` | Get all todos with pagination |
+| GET | `/api/v1/todo/items` | Get all todos with pagination |
 | POST | `/api/v1/todo` | Create a new todo |
 | PUT | `/api/v1/todo` | Update an existing todo |
 | DELETE | `/api/todo/{id}` | Delete a todo |
