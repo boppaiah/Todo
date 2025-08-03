@@ -3,6 +3,7 @@ import { TodoService } from '../../services/todo.service';
 import { DatePipe } from '@angular/common';
 import { Todo } from '../../models/todo';
 import { TaskTableComponent } from '../task-table/task-table.component';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -13,7 +14,11 @@ import { TaskTableComponent } from '../task-table/task-table.component';
   styleUrl: './todo-list.component.css'
 })
 export class TodoListComponent implements OnInit  {
- constructor(public service: TodoService){}
+ 
+  constructor(
+    public service: TodoService,
+    private toastr:ToastrService,
+  ){}
  
   totalUsers = 0;
   initialPageSize = 5;
@@ -21,7 +26,6 @@ export class TodoListComponent implements OnInit  {
 
   //initial render
   ngOnInit(): void {
-
     this.loadTasks(this.initialPageIndex, this.initialPageSize);
   }
 
@@ -33,6 +37,7 @@ export class TodoListComponent implements OnInit  {
         this.totalUsers = data.total;
       },
       error: (err) => {
+        this.toastr.error(`Unable to connect to server ${err.message}`, 'Todo Detail register');
       },
     });
   }
