@@ -1,7 +1,7 @@
 ## Todo Application
-A full-stack Todo application built with Angular 17 and .NET 8 Web API, demonstrating modern software architecture patterns and best practices.
+A full-stack Todo application built with Angular 18 and .NET 8 Web API, demonstrating modern software architecture patterns and best practices.
 
-📋 Features
+## 📋 Features
 
 ✅ View todo list with pagination
 
@@ -32,7 +32,7 @@ A full-stack Todo application built with Angular 17 and .NET 8 Web API, demonstr
 
 - In-Memory Data Storage: As per requirements
 
-**Frontend (Angular 17)**
+**Frontend (Angular 18)**
 
 - Component-Based Architecture: Modular, reusable components
 
@@ -47,112 +47,91 @@ A full-stack Todo application built with Angular 17 and .NET 8 Web API, demonstr
 
 ## 🚀 Getting Started
 
-Prerequisites
+**Prerequisites**
+- Node.js 18+ and npm
+- .NET 8 SDK
+- Git
 
-Node.js 18+ and npm
+**Installation & Setup**
+- Clone the repository
+- bash git clone https://github.com/boppaiah/Todo
+- cd Todo
 
-.NET 8 SDK
+**Backend Setup**
+- bash cd TodoAPI
+- dotnet restore
+- dotnet run
+- API will be available at https://localhost:5275
+  
+**Frontend Setup**
+- bash cd UI/TodoApp
+- npm install
+- ng serve
+- Application will be available at http://localhost:4200
 
-Git
+## Running the Application
 
-Installation & Setup
+- Start the backend API first
+- Start the Angular frontend
+- Navigate to http://localhost:4200
 
-Clone the repository
-bashgit clone [your-repo-url]
-cd todo-application
-
-Backend Setup
-bashcd TodoAPI
-dotnet restore
-dotnet run
-API will be available at https://localhost:5275
-Frontend Setup
-bashcd UI/TodoApp
-npm install
-ng serve
-Application will be available at http://localhost:4200
-
-Running the Application
-
-Start the backend API first
-Start the Angular frontend
-Navigate to http://localhost:4200
-
-🛠️ Tech Stack
-- ComponentTechnologyFrontendAngular 17
+## 🛠️ Tech Stack
+- Angular 18
 - TypeScript
-  - Angular Material
-  - Backend.NET 8
-  - ASP.NET Core Web API
-  - Validation FluentValidation (Backend)
-  -  Angular Reactive Forms (Frontend)
-  -  Architecture
-     - CQRS
-     -  Vertical Slice Architecture
-     -  MediatR
-     -   Repository Pattern
-     -  Dependency Injection
-     -  
+- Angular Material
+- Backend.NET 8
+- ASP.NET Core Web API
+- Validation FluentValidation (Backend)
+- Angular Reactive Forms (Frontend)
+- CQRS
+-  Vertical Slice Architecture
+-  MediatR
+- Repository Pattern
+-  Dependency Injection
+       
 ## 📁 Project Structure
 
-todo-application/
+### Backend Architecture (TodoAPI/)
+- **Todos/** - Vertical Slice Architecture
+  - `CreateTodo/` - Command, Handler, Validator
+  - `GetTodos/` - Query, Handler  
+  - `UpdateTodo/` - Command, Handler, Validator
+  - `DeleteTodo/` - Command, Handler
+- **Shared/** - Common concerns
+  - `CQRS/` - Base interfaces and infrastructure
+  - `Exceptions/` - Custom exception classes
+- **Models/** - DTOs and data transfer objects
 
-├── TodoAPI/                          # .NET Web API
-│   ├── Features/                     # Vertical Slice Architecture
-│   │   └── Todos/
 
-│   │       ├── CreateTodo/           # Command + Handler + Validator
+### Frontend Structure (UI/TodoApp/)
+- **src/app/**
+  - `components/` - Angular components (todo-list, todo-form)
+  - `services/` - HTTP services and business logic
+  - `models/` - TypeScript interfaces and types
 
-│   │       ├── GetTodos/             # Query + Handler
 
-│   │       ├── UpdateTodo/           # Command + Handler + Validator
+## 🎯 Key Implementation Highlights
+### Backend Architecture Decisions
+- **Vertical Slices**: Each feature is self-contained with its own command/query, handler, and validation
+- **CQRS**: Separate models for read and write operations for better scalability
+- **MediatR Pipeline**: Centralized request handling with cross-cutting concerns
+- **Custom Exceptions**: Proper error handling with meaningful messages
 
-│   │       └── DeleteTodo/           # Command + Handler
+### Frontend Best Practices
+- **Standalone Components**: Modern Angular architecture
+- **Reactive Forms**: Type-safe form handling with custom validators
+- **Service Abstraction**: Clean separation between UI and business logic
+- **Material Design**: Consistent, accessible UI components
+- **Error Handling**: User-friendly error messages and loading states
 
-│   ├── Shared/                       # Common concerns
-
-│   │   ├── CQRS/                     # Base interfaces
-
-│   │   └── Exceptions/               # Custom exceptions
-
-│   └── Models/                       # DTOs and data models
-
-├── UI/TodoApp/                       # Angular Application
-
-│   ├── src/app/
-
-│   │   ├── components/               # Reusable components
-
-│   │   ├── services/                 # Business logic services
-
-│   │   ├── models/                   # TypeScript interfaces
-
-└── README.md
-
-🎯 Key Implementation Highlights
-Backend Architecture Decisions
-
-Vertical Slices: Each feature is self-contained with its own command/query, handler, and validation
-CQRS: Separate models for read and write operations for better scalability
-MediatR Pipeline: Centralized request handling with cross-cutting concerns
-Custom Exceptions: Proper error handling with meaningful messages
-
-Frontend Best Practices
-
-Standalone Components: Modern Angular architecture
-Reactive Forms: Type-safe form handling with custom validators
-Service Abstraction: Clean separation between UI and business logic
-Material Design: Consistent, accessible UI components
-Error Handling: User-friendly error messages and loading states
-
-🧪 Testing Strategy
+## 🧪 Testing Strategy
 The application includes:
 
 Unit tests for Command/Query handlers
 Component tests for Angular components
 Form validation tests
 
-🔧 Development Practices
+## 🔧 Development Practices
 
 EditorConfig: Consistent code formatting
 TypeScript: Strong typing throughout
@@ -160,50 +139,47 @@ Git Flow: Feature branches with meaningful commits
 Code Organization: Clear separation of concerns
 Error Handling: Comprehensive error management
 
-📝 API Endpoints
-MethodEndpointDescriptionGET/api/todosGet all todos with paginationPOST/api/todosCreate a new todoPUT/api/todos/{id}Update an existing todoDELETE/api/todos/{id}Delete a todo
-🎨 UI/UX Features
+## 📝 API Endpoints
 
-Responsive design that works on mobile and desktop
-Loading spinners during API calls
-Confirmation dialogs for destructive actions
-Form validation with clear error messages
-Empty state handling
-Consistent Material Design throughout
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/v1/todos` | Get all todos with pagination |
+| POST | `/api/v1/todo` | Create a new todo |
+| PUT | `/api/v1/todo` | Update an existing todo |
+| DELETE | `/api/todo/{id}` | Delete a todo |
 
-🚀 Production Considerations
+
+## 🚀 Production Considerations
+
 For a production deployment, consider:
+- Database integration (SQL Server, PostgreSQL)
+- Authentication and authorization
+- API versioning
+- Logging and monitoring
+- Unit and integration test coverage
+- CI/CD pipeline
+- Docker containerization
+- Environment-specific configurations
 
-Database integration (SQL Server, PostgreSQL)
-Authentication and authorization
-API versioning
-Logging and monitoring
-Unit and integration test coverage
-CI/CD pipeline
-Docker containerization
-Environment-specific configurations
+## 🔍 Design Decisions
 
-🔍 Design Decisions
-Why Vertical Slice Architecture?
+**Why Vertical Slice Architecture?**
+- Each feature is self-contained and easy to modify
+- Reduces coupling between features
+- Makes testing easier
+- Scales well as the application grows
 
-Each feature is self-contained and easy to modify
-Reduces coupling between features
-Makes testing easier
-Scales well as the application grows
+**Why CQRS?**
+- Clear separation between read and write operations
+- Better performance optimization opportunities
+- Easier to reason about data flow
 
-Why CQRS?
-
-Clear separation between read and write operations
-Better performance optimization opportunities
-Easier to reason about data flow
-
-Why Angular Material?
-
-Professional, accessible UI components
-Consistent design system
-Mobile-responsive out of the box
-Well-maintained and documented
+**Why Angular Material?**
+- Professional, accessible UI components
+- Consistent design system
+- Mobile-responsive out of the box
+- Well-maintained and documented
 
 📞 Contact
 [Boppaiah] - [boppaiah1993@gmail.com]
-[[Your LinkedIn/GitHub Profile](https://www.linkedin.com/in/boppaiah-subbaiah/)]
+[[Your LinkedIn Profile](https://www.linkedin.com/in/boppaiah-subbaiah/)]
