@@ -96,7 +96,7 @@ export class TodoFormComponent implements OnInit {
   }
 
   loadTodoItem(id:string){
-      const todoItem = this.service.todoItemList.find(t => t.id === id);
+      const todoItem = (this.service.todoItemList ?? []).find(t => t.id === id);
       if(todoItem){
         this.service.formData = {
           ...todoItem,
