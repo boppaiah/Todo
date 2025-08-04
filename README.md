@@ -54,7 +54,7 @@ A full-stack Todo application built with Angular 18 and .NET 8 Web API, demonstr
 
 **Installation & Setup**
 - Clone the repository
-- bash git clone https://github.com/boppaiah/Todo
+- bash git clone https://github.com/boppaiah/Todo - select branch **master**
 - cd Todo
 
 **Backend Setup**
