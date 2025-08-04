@@ -35,7 +35,7 @@ describe('TodoService', () => {
       expect(todos.todoItems).toEqual(mockResponse.todoItems);
     });
 
-    const req = httpMock.expectOne('https://localhost:7128/api/v1/todo/items?pageNumber=1&pageSize=5'); // change to your actual endpoint
+    const req = httpMock.expectOne('http://localhost:5275/api/v1/todo/items?pageNumber=1&pageSize=5'); // change to your actual endpoint
     expect(req.request.method).toBe('GET');
     req.flush(mockResponse);
   });
@@ -54,7 +54,7 @@ describe('TodoService', () => {
       expect(todo).toEqual(newTodo);
     });
 
-    const req = httpMock.expectOne('https://localhost:7128/api/v1/todo'); // update URL as needed
+    const req = httpMock.expectOne('https://localhost::5275/api/v1/todo'); // update URL as needed
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual(newTodo);
     req.flush(newTodo);
