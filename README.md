@@ -61,7 +61,7 @@ A full-stack Todo application built with Angular 18 and .NET 8 Web API, demonstr
 - bash cd API/TodoAPI/TodoAPI
 - dotnet restore
 - dotnet run
-- API will be available at https://localhost:7128
+- API will be available at http://localhost:5275
   
 **Frontend Setup**
 - bash cd UI/TodoApp
