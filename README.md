@@ -58,10 +58,10 @@ A full-stack Todo application built with Angular 18 and .NET 8 Web API, demonstr
 - cd Todo
 
 **Backend Setup**
-- bash cd API/TodoAPI
+- bash cd API/TodoAPI/TodoAPI
 - dotnet restore
 - dotnet run
-- API will be available at https://localhost:7128
+- API will be available at http://localhost:5275
   
 **Frontend Setup**
 - bash cd UI/TodoApp
@@ -146,7 +146,7 @@ Error Handling: Comprehensive error management
 | GET | `/api/v1/todo/items` | Get all todos with pagination |
 | POST | `/api/v1/todo` | Create a new todo |
 | PUT | `/api/v1/todo` | Update an existing todo |
-| DELETE | `/api/todo/{id}` | Delete a todo |
+| DELETE | `/api/todo?id=` | Delete a todo |
 
 
 ## 🚀 Production Considerations
@@ -182,4 +182,4 @@ For a production deployment, consider:
 
 📞 Contact
 [Boppaiah] - [boppaiah1993@gmail.com]
-[[Your LinkedIn Profile](https://www.linkedin.com/in/boppaiah-subbaiah/)]
+[(https://www.linkedin.com/in/boppaiah-subbaiah/)]
