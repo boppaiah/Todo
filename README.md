@@ -146,7 +146,7 @@ Error Handling: Comprehensive error management
 | GET | `/api/v1/todo/items` | Get all todos with pagination |
 | POST | `/api/v1/todo` | Create a new todo |
 | PUT | `/api/v1/todo` | Update an existing todo |
-| DELETE | `/api/todo/{id}` | Delete a todo |
+| DELETE | `/api/todo?id=` | Delete a todo |
 
 
 ## 🚀 Production Considerations
@@ -182,4 +182,4 @@ For a production deployment, consider:
 
 📞 Contact
 [Boppaiah] - [boppaiah1993@gmail.com]
-[[Your LinkedIn Profile](https://www.linkedin.com/in/boppaiah-subbaiah/)]
+[(https://www.linkedin.com/in/boppaiah-subbaiah/)]
