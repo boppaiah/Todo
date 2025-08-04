@@ -39,5 +39,10 @@ describe('TodoFormComponent', () => {
     const form = fixture.nativeElement.querySelector('form');
     expect(form.checkValidity()).toBeFalse();
   });
+
+  it('should mark form as invalid when required fields are missing', () => {
+    const form = fixture.nativeElement.querySelector('form');
+    expect(form.checkValidity()).toBeFalse();
+  });
   
 });
